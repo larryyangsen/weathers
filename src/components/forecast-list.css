@@ -1,0 +1,5 @@
+.forecast-list {
+    text-align: center;
+    height: 30rem;
+    overflow: auto;
+}
