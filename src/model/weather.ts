@@ -1,14 +1,9 @@
 import axios from 'axios';
 import { IWeather } from '../types/weather';
 import { IForecast } from '../types/forecast';
-
-const appid = process.env.appid || '';
-const weatherUrl = new URL('https://api.openweathermap.org/data/2.5/weather');
-const forecastUrl = new URL('https://api.openweathermap.org/data/2.5/forecast');
-weatherUrl.searchParams.set('appid', appid);
-weatherUrl.searchParams.set('units', 'metric');
-forecastUrl.searchParams.set('appid', appid);
-forecastUrl.searchParams.set('units', 'metric');
+const baseUrl = process.env.NODE_ENV === 'DEV' ? 'http://localhost:8080/' : '/';
+const weatherUrl = new URL(`${baseUrl}weather`);
+const forecastUrl = new URL(`${baseUrl}forecast`);
 
 export const fetchWeatherFromLatLng = (lat: number, lon: number) => {
     if (!lat || !lon) return {} as IWeather;

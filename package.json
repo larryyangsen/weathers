@@ -4,11 +4,14 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "concurrently -r \"npm:type-check:watch\" \"npm:start\"",
+        "dev": "NODE_ENV=DEV concurrently -r \"npm:type-check:watch\" \"npm:start\"",
         "start": "parcel src/index.html",
+        "build": "npm run type-check && parcel build ./src/index.html --public-url '/'",
+        "prettify": "prettier --write './src/**/*.{ts,tsx}'",
         "type-check": "tsc --noEmit",
         "type-check:watch": "tsc --noEmit --watch",
-        "test": "jest"
+        "test": "jest",
+        "test:watch": "jest --watch"
     },
     "keywords": [],
     "author": "",
@@ -31,5 +34,8 @@
         "tslint-config-prettier": "^1.18.0",
         "tslint-react": "^3.6.0",
         "typescript": "^3.3.1"
+    },
+    "dependencies": {
+        "prettier": "^1.16.4"
     }
 }
